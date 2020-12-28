@@ -166,11 +166,6 @@ class _ListUserScreenState extends State<ListUserScreen> {
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          // ClipPath(
-          //   child: Container(
-          //     decoration: ShapeDecoration(shape: RoundedRectangleBorder(),),
-          //   ),
-          // clipper: MyCustomClipper(),
         ),
       ),
     );

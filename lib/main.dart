@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/screens/add_user_screen.dart';
 import 'package:login/screens/list_user_screen.dart';
 
 void main() {
@@ -31,6 +32,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return ListUserScreen();
+    return AddUserScreen();
   }
 }
