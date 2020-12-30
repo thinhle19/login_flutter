@@ -3,11 +3,114 @@ import 'package:login/screens/add_user_screen.dart';
 import 'package:login/screens/list_user_screen.dart';
 import 'package:login/screens/login_screen.dart';
 
+import 'user.dart';
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final List<User> users = [
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Matched User",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "@123",
+      userName: "@123",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +121,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/": (ctx) => ListUserScreen(),
+        "/": (ctx) => LoginScreen(
+              users: users,
+            ),
         ListUserScreen.routeName: (ctx) => ListUserScreen(),
         AddUserScreen.routeName: (ctx) => AddUserScreen(),
       },

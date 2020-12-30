@@ -4,6 +4,10 @@ import '../user.dart';
 
 class ListUserScreen extends StatefulWidget {
   static const routeName = "list-user";
+  final List<User> users;
+
+
+  ListUserScreen({this.users});
 
   @override
   _ListUserScreenState createState() => _ListUserScreenState();
@@ -32,7 +36,7 @@ class _ListUserScreenState extends State<ListUserScreen> {
           body: GridView.count(
             crossAxisCount: 2,
             padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
-            children: users
+            children: widget.users
                 .map(
                   (user) => GestureDetector(
                     onTap: () {

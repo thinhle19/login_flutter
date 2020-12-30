@@ -57,6 +57,8 @@ class BeautyTextField extends StatefulWidget {
         assert(prefixIcon != null),
         assert(inputType != null);
 
+  get controllerText
+
   @override
   _BeautyTextFieldState createState() => _BeautyTextFieldState();
 }
@@ -136,7 +138,7 @@ class _BeautyTextFieldState extends State<BeautyTextField> {
                   flex: 5,
                   child: Container(
                     margin: EdgeInsets.only(right: 50, top: 3),
-                    child: TextField(
+                    child: TextFormField(onSaved: ,
                       obscuringCharacter: "*",
                       controller: widget.controller,
                       cursorWidth: 2,
@@ -161,6 +163,7 @@ class _BeautyTextFieldState extends State<BeautyTextField> {
                       minLines: widget.minLines,
                       onChanged: widget.onChanged,
                       onTap: () {
+                        print(widget.controller.text);
                         setState(() {
                           isFocus = true;
                         });

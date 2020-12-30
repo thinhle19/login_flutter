@@ -5,111 +5,32 @@ import 'package:login/widgets/my_flat_button.dart';
 import '../user.dart';
 
 class LoginScreen extends StatefulWidget {
+  final List<User> users;
+
+  LoginScreen({this.users});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  List<User> users = [
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-    User(
-      avatarUrl: "assets/test_image.jpg",
-      phone: "0936 572 310",
-      name: "Le Tien Thinh",
-      password: "admin",
-      userName: "admin",
-    ),
-  ];
+  bool foundedUser = false;
+  TextEditingController _userNameController;
+  TextEditingController _passwordController;
+
+  void _submitLogin() {
+    String _inputtedUsername = "_userNameController.text";
+    String _inputtedPassword = "_passwordController.text";
+    User matchedUser;
+
+    matchedUser = widget.users.firstWhere((currentUser) {
+      return (_inputtedUsername == currentUser.userName &&
+          _inputtedPassword == currentUser.password);
+    }, orElse: () => null);
+
+    matchedUser == null ? foundedUser = false : foundedUser = true;
+    print(foundedUser);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Opacity(
                           opacity: 0.5,
                           child: BeautyTextField(
+                            controller: _userNameController,
                             textColor: Colors.green,
                             backgroundColor: Colors.black,
                             accentColor: Colors.white38,
@@ -154,6 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Opacity(
                           opacity: 0.5,
                           child: BeautyTextField(
+                            controller: _passwordController,
                             textColor: Colors.green,
                             backgroundColor: Colors.black,
                             accentColor: Colors.white38,
@@ -169,7 +92,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.only(top: 180, bottom: 50),
                           child: MyFlatButton(
                             title: "Submit",
-                            handler: () {},
+                            handler: () {
+                              setState(() {
+                                _submitLogin();
+                              });
+                            },
                             height: 40,
                             width: 250,
                             color: Colors.green.shade500.withOpacity(.5),
