@@ -121,10 +121,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/": (ctx) => LoginScreen(
-              users: users,
-            ),
-        ListUserScreen.routeName: (ctx) => ListUserScreen(),
+        "/": (ctx) => LoginScreen(),
+        ListUserScreen.routeName: (ctx) => ListUserScreen(users: users),
         AddUserScreen.routeName: (ctx) => AddUserScreen(),
       },
     );

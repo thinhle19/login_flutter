@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:login/screens/list_user_screen.dart';
 import 'package:login/widgets/beauty_textfield.dart';
 import 'package:login/widgets/my_flat_button.dart';
 
@@ -13,85 +14,122 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String userName;
   String password;
+  bool loggedIn = false;
+  final userNameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Center(
-          child: Container(
-            constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height,
-            ),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Opacity(
-                  opacity: 0.8,
-                  child: Image.asset(
-                    "assets/login_background.jpg",
-                    fit: BoxFit.fill,
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      body: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: screenHeight * 0.04,
                   ),
-                ),
-                SingleChildScrollView(
-                  child: Container(
-                    height: MediaQuery.of(context).size.height -
-                        MediaQuery.of(context).padding.top,
+                  Text(
+                    "Welcome",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "Input your username and password",
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.08,
+                  ),
+                  Form(
+                    key: _formKey,
                     child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Opacity(
-                          opacity: 0.5,
-                          child: BeautyTextField(
-                            controller: _userNameController,
-                            textColor: Colors.green,
-                            backgroundColor: Colors.black,
-                            accentColor: Colors.white38,
-                            width: 300,
-                            height: 50,
-                            prefixIcon: Icon(Icons.person_sharp),
-                            inputType: TextInputType.name,
-                            placeholder: "Username",
-                          ),
+                        buildUsernameFormField(),
+                        SizedBox(
+                          height: 30,
                         ),
-                        Opacity(
-                          opacity: 0.5,
-                          child: BeautyTextField(
-                            controller: _passwordController,
-                            textColor: Colors.green,
-                            backgroundColor: Colors.black,
-                            accentColor: Colors.white38,
-                            width: 300,
-                            height: 50,
-                            prefixIcon: Icon(Icons.lock_sharp),
-                            inputType: TextInputType.text,
-                            placeholder: "Password",
-                            obscureText: true,
-                          ),
+                        buildPasswordFormField(),
+                        SizedBox(
+                          height: 30,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 180, bottom: 50),
-                          child: MyFlatButton(
-                            title: "Submit",
-                            handler: () {
-                              setState(() {
-                                _submitLogin();
-                              });
+                        SizedBox(
+                          width: double.infinity,
+                          height: 56,
+                          child: FlatButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            color: Colors.green,
+                            onPressed: () {
+                              print(userNameController.text);
+                              print(passwordController.text);
+                              if (userNameController.text == "admin" && passwordController.text == "admin") {
+                                setState(() {
+                                  loggedIn = true;
+                                });
+                                Navigator.pushReplacementNamed(
+                                    context, ListUserScreen.routeName);
+                              } else
+                                setState(() {
+                                  loggedIn = false;
+                                });
                             },
-                            height: 40,
-                            width: 250,
-                            color: Colors.green.shade500.withOpacity(.5),
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: screenHeight * 0.08,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  TextFormField buildUsernameFormField() {
+    return TextFormField(
+      controller: userNameController,
+      keyboardType: TextInputType.text,
+      onSaved: (newVal) => userName = newVal,
+      decoration: InputDecoration(
+        labelText: "Username",
+        hintText: "Enter username",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.person_sharp),
+      ),
+    );
+  }
+
+  TextFormField buildPasswordFormField() {
+    return TextFormField(
+      controller: passwordController,
+      obscureText: true,
+      onSaved: (newVal) => password = newVal,
+      decoration: InputDecoration(
+        labelText: "Password",
+        hintText: "Enter your password",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: Icon(Icons.lock_sharp),
       ),
     );
   }
