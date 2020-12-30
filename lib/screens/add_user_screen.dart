@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 import 'package:login/widgets/my_text_field_item.dart';
 
 class AddUserScreen extends StatefulWidget {
+  static const routeName = "/add-user";
+
   @override
   _AddUserScreenState createState() => _AddUserScreenState();
 }

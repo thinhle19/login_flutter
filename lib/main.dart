@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/screens/add_user_screen.dart';
 import 'package:login/screens/list_user_screen.dart';
+import 'package:login/screens/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: "/",
+      routes: {
+        "/": (ctx) => LoginScreen(),
+        ListUserScreen.routeName: (ctx) => ListUserScreen(),
+        AddUserScreen.routeName: (ctx) => AddUserScreen(),
+      },
     );
   }
 }
@@ -32,6 +38,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return AddUserScreen();
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Center(
+          child: Text("Login Pet Project"),
+        ),
+      ),
+    );
   }
 }

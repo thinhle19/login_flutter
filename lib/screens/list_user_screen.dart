@@ -3,6 +3,8 @@ import "package:flutter/material.dart";
 import '../user.dart';
 
 class ListUserScreen extends StatefulWidget {
+  static const routeName = "list-user";
+
   @override
   _ListUserScreenState createState() => _ListUserScreenState();
 }
