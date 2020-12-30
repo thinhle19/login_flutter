@@ -9,6 +9,8 @@
 .history
 .svn/
 
+lib/todo.txt
+
 # IntelliJ related
 *.iml
 *.ipr
