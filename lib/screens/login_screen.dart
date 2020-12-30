@@ -2,12 +2,115 @@ import "package:flutter/material.dart";
 import 'package:login/widgets/beauty_textfield.dart';
 import 'package:login/widgets/my_flat_button.dart';
 
+import '../user.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  List<User> users = [
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+    User(
+      avatarUrl: "assets/test_image.jpg",
+      phone: "0936 572 310",
+      name: "Le Tien Thinh",
+      password: "admin",
+      userName: "admin",
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
