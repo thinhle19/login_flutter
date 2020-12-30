@@ -1,9 +1,9 @@
 overall
     navigate
-    ****if time: navigate with animation
+    **_**if time: navigate with animation
 login
     check valid input
-    ****if time: indicate textfield state to better display
+    **_**if time: indicate textfield state to better display
 
 add user
     if time: validate

@@ -78,8 +78,8 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
           borderRadius: widget.cornerRadius,
           color: widget.suffixIcon == null
               ? isFocus
-                  ? widget.accentColor
-                  : widget.backgroundColor
+                  ? widget.backgroundColor
+                  : widget.accentColor
               : widget.backgroundColor),
       child: Stack(
         children: <Widget>[
@@ -129,7 +129,7 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
                   child: Icon(
                     widget.prefixIcon.icon,
                     color:
-                        isFocus ? widget.backgroundColor : widget.accentColor,
+                        isFocus ? widget.accentColor : widget.backgroundColor,
                   ),
                 ),
                 Expanded(
@@ -176,7 +176,7 @@ class _BeautyTextfieldState extends State<BeautyTextfield> {
                       },
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: TextStyle(color: Colors.green),
                           hintText: widget.placeholder,
                           border: InputBorder.none),
                       cursorColor:

@@ -27,47 +27,54 @@ class _LoginScreenState extends State<LoginScreen> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Opacity(
-                      opacity: 0.5,
-                      child: BeautyTextfield(
-                        textColor: Colors.cyanAccent,
-                        backgroundColor: Colors.black,
-                        accentColor: Colors.grey,
-                        width: 300,
-                        height: 50,
-                        prefixIcon: Icon(Icons.person_sharp),
-                        inputType: TextInputType.name,
-                        placeholder: "Username",
-                      ),
+                SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).padding.top,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Opacity(
+                          opacity: 0.5,
+                          child: BeautyTextfield(
+                            textColor: Colors.green,
+                            backgroundColor: Colors.black,
+                            accentColor: Colors.white38,
+                            width: 300,
+                            height: 50,
+                            prefixIcon: Icon(Icons.person_sharp),
+                            inputType: TextInputType.name,
+                            placeholder: "Username",
+                          ),
+                        ),
+                        Opacity(
+                          opacity: 0.5,
+                          child: BeautyTextfield(
+                            textColor: Colors.green,
+                            backgroundColor: Colors.black,
+                            accentColor: Colors.white38,
+                            width: 300,
+                            height: 50,
+                            prefixIcon: Icon(Icons.lock_sharp),
+                            inputType: TextInputType.text,
+                            placeholder: "Password",
+                            obscureText: true,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 180, bottom: 50),
+                          child: MyFlatButton(
+                            title: "Submit",
+                            handler: () {},
+                            height: 40,
+                            width: 250,
+                            color: Colors.green.shade500.withOpacity(.5),
+                          ),
+                        ),
+                      ],
                     ),
-                    Opacity(
-                      opacity: 0.5,
-                      child: BeautyTextfield(
-                        textColor: Colors.cyanAccent,
-                        backgroundColor: Colors.black,
-                        accentColor: Colors.grey,
-                        width: 300,
-                        height: 50,
-                        prefixIcon: Icon(Icons.lock),
-                        inputType: TextInputType.text,
-                        placeholder: "Password",
-                        obscureText: true,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 180,bottom: 50),
-                      child: MyFlatButton(
-                        title: "Submit",
-                        handler: () {},
-                        height: 40,
-                        width: 250,
-                        color: Colors.green.shade500.withOpacity(.5),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ],
             ),
