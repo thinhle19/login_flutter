@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Opacity(
                           opacity: 0.5,
-                          child: BeautyTextfield(
+                          child: BeautyTextField(
                             textColor: Colors.green,
                             backgroundColor: Colors.black,
                             accentColor: Colors.white38,
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Opacity(
                           opacity: 0.5,
-                          child: BeautyTextfield(
+                          child: BeautyTextField(
                             textColor: Colors.green,
                             backgroundColor: Colors.black,
                             accentColor: Colors.white38,

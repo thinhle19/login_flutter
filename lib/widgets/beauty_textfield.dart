@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BeautyTextfield extends StatefulWidget {
+class BeautyTextField extends StatefulWidget {
   final BorderRadius cornerRadius;
   final double width, height, wordSpacing;
   final Color backgroundColor, accentColor, textColor;
@@ -20,7 +20,7 @@ class BeautyTextfield extends StatefulWidget {
   final GestureTapCallback onTap;
   final TextEditingController controller;
 
-  const BeautyTextfield(
+  const BeautyTextField(
       {@required this.width,
       @required this.height,
       @required this.prefixIcon,
@@ -58,10 +58,10 @@ class BeautyTextfield extends StatefulWidget {
         assert(inputType != null);
 
   @override
-  _BeautyTextfieldState createState() => _BeautyTextfieldState();
+  _BeautyTextFieldState createState() => _BeautyTextFieldState();
 }
 
-class _BeautyTextfieldState extends State<BeautyTextfield> {
+class _BeautyTextFieldState extends State<BeautyTextField> {
   bool isFocus = false;
 
   @override
