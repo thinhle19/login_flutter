@@ -19,45 +19,45 @@ class BeautyTextField extends StatefulWidget {
   final ValueChanged<String> onChanged, onSubmitted;
   final GestureTapCallback onTap;
   final TextEditingController controller;
+  final Map<String, String> inputInfo;
 
-  const BeautyTextField(
-      {@required this.width,
-      @required this.height,
-      @required this.prefixIcon,
-      @required this.inputType,
-      this.controller,
-      this.suffixIcon,
-      this.duration = const Duration(milliseconds: 500),
-      this.margin = const EdgeInsets.all(10),
-      this.obscureText = false,
-      this.backgroundColor = const Color(0xff111823),
-      this.cornerRadius = const BorderRadius.all(Radius.circular(10)),
-      this.textColor = const Color(0xff5c5bb0),
-      this.accentColor = Colors.white,
-      this.placeholder = "Placeholder",
-      this.isShadow = true,
-      this.onClickSuffix,
-      this.wordSpacing,
-      this.textBaseline,
-      this.fontFamily,
-      this.fontStyle,
-      this.fontWeight,
-      this.autofocus = false,
-      this.autocorrect = false,
-      this.focusNode,
-      this.enabled = true,
-      this.maxLength,
-      this.maxLines = 1,
-      this.minLines,
-      this.onChanged,
-      this.onTap,
-      this.onSubmitted})
-      : assert(width != null),
+  const BeautyTextField({
+    @required this.width,
+    @required this.height,
+    @required this.prefixIcon,
+    @required this.inputType,
+    this.inputInfo,
+    this.controller,
+    this.suffixIcon,
+    this.duration = const Duration(milliseconds: 500),
+    this.margin = const EdgeInsets.all(10),
+    this.obscureText = false,
+    this.backgroundColor = const Color(0xff111823),
+    this.cornerRadius = const BorderRadius.all(Radius.circular(10)),
+    this.textColor = const Color(0xff5c5bb0),
+    this.accentColor = Colors.white,
+    this.placeholder = "Placeholder",
+    this.isShadow = true,
+    this.onClickSuffix,
+    this.wordSpacing,
+    this.textBaseline,
+    this.fontFamily,
+    this.fontStyle,
+    this.fontWeight,
+    this.autofocus = false,
+    this.autocorrect = false,
+    this.focusNode,
+    this.enabled = true,
+    this.maxLength,
+    this.maxLines = 1,
+    this.minLines,
+    this.onChanged,
+    this.onTap,
+    this.onSubmitted,
+  })  : assert(width != null),
         assert(height != null),
         assert(prefixIcon != null),
         assert(inputType != null);
-
-  get controllerText
 
   @override
   _BeautyTextFieldState createState() => _BeautyTextFieldState();
@@ -138,7 +138,7 @@ class _BeautyTextFieldState extends State<BeautyTextField> {
                   flex: 5,
                   child: Container(
                     margin: EdgeInsets.only(right: 50, top: 3),
-                    child: TextFormField(onSaved: ,
+                    child: TextField(
                       obscuringCharacter: "*",
                       controller: widget.controller,
                       cursorWidth: 2,

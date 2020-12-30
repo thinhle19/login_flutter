@@ -5,32 +5,14 @@ import 'package:login/widgets/my_flat_button.dart';
 import '../user.dart';
 
 class LoginScreen extends StatefulWidget {
-  final List<User> users;
-
-  LoginScreen({this.users});
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool foundedUser = false;
-  TextEditingController _userNameController;
-  TextEditingController _passwordController;
-
-  void _submitLogin() {
-    String _inputtedUsername = "_userNameController.text";
-    String _inputtedPassword = "_passwordController.text";
-    User matchedUser;
-
-    matchedUser = widget.users.firstWhere((currentUser) {
-      return (_inputtedUsername == currentUser.userName &&
-          _inputtedPassword == currentUser.password);
-    }, orElse: () => null);
-
-    matchedUser == null ? foundedUser = false : foundedUser = true;
-    print(foundedUser);
-  }
+  final _formKey = GlobalKey<FormState>();
+  String userName;
+  String password;
 
   @override
   Widget build(BuildContext context) {
