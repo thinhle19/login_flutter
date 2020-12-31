@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:login/models/USER_DATA.dart';
+import 'package:login/screens/add_user_screen.dart';
 import 'package:login/screens/user_detail_screen.dart';
 import 'package:login/widgets/user_item.dart';
 
@@ -47,7 +48,9 @@ class _ListUserScreenState extends State<ListUserScreen> {
                 .toList(),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(AddUserScreen.routeName);
+            },
             backgroundColor: Colors.cyan,
             child: IconButton(
               icon: FittedBox(child: Icon(Icons.add)),

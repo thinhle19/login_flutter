@@ -6,6 +6,7 @@ class User {
   final String password;
   final String id;
   final String fullBodyImageUrl;
+  final String description;
 
   const User({
     this.id,
@@ -14,6 +15,7 @@ class User {
     this.avatarUrl,
     this.userName,
     this.password,
+    this.description,
     this.fullBodyImageUrl,
   });
 }

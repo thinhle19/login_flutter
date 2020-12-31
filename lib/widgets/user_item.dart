@@ -6,14 +6,12 @@ class UserItem extends StatelessWidget {
   final String name;
   final String phone;
   final String avatarUrl;
-  final String fullBodyImageUrl;
 
   UserItem({
     this.id,
     this.name,
     this.phone,
     this.avatarUrl,
-    this.fullBodyImageUrl,
   });
 
   void _selectUser(ctx) {
