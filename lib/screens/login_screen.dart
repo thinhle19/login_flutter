@@ -1,9 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:login/screens/list_user_screen.dart';
-import 'package:login/widgets/beauty_textfield.dart';
 import 'package:login/widgets/my_flat_button.dart';
 
-import '../user.dart';
+import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

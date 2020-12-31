@@ -4,6 +4,8 @@ overall
 login
     check valid input
     **_**if time: indicate textfield state to better display
-
 add user
     if time: validate
+
+user detail
+    if time: auto crop and zoom to fit every phone

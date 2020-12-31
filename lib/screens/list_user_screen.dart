@@ -1,13 +1,12 @@
 import "package:flutter/material.dart";
+import 'package:login/models/USER_DATA.dart';
+import 'package:login/screens/user_detail_screen.dart';
+import 'package:login/widgets/user_item.dart';
 
-import '../user.dart';
+import '../models/user.dart';
 
 class ListUserScreen extends StatefulWidget {
   static const routeName = "list-user";
-  final List<User> users;
-
-
-  ListUserScreen({this.users});
 
   @override
   _ListUserScreenState createState() => _ListUserScreenState();
@@ -36,74 +35,13 @@ class _ListUserScreenState extends State<ListUserScreen> {
           body: GridView.count(
             crossAxisCount: 2,
             padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
-            children: widget.users
+            children: USER_DATA
                 .map(
-                  (user) => GestureDetector(
-                    onTap: () {
-                      //todo delete
-                      print("tapped");
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(6),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 5,
-                        child: Column(
-                          children: [
-                            Flexible(
-                              flex: 3,
-                              child: Padding(
-                                padding: EdgeInsets.all(3),
-                                child: ClipRRect(
-                                  clipBehavior: Clip.hardEdge,
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: AspectRatio(
-                                    aspectRatio: 1,
-                                    child: FittedBox(
-                                      clipBehavior: Clip.antiAlias,
-                                      fit: BoxFit.fill,
-                                      child: Image.asset(
-                                        user.avatarUrl,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 2),
-                                child: Text(
-                                  user.phone,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "Bodini",
-                                      fontSize: 15),
-                                ),
-                              ),
-                            ),
-                            Flexible(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 2),
-                                child: Text(
-                                  user.name,
-                                  textAlign: TextAlign.center,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "AgencyFB",
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                  (user) => UserItem(
+                    id: user.id,
+                    name: user.name,
+                    avatarUrl: user.avatarUrl,
+                    phone: user.phone,
                   ),
                 )
                 .toList(),
