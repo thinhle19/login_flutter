@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:login/models/user_model.dart';
 import 'package:login/screens/add_user_screen.dart';
 import 'package:login/screens/list_user_screen.dart';
+import 'package:login/screens/login_screen.dart';
 import 'package:login/screens/user_detail_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(
@@ -14,7 +16,27 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isLoggedIn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLogInStatus();
+  }
+
+  void checkLogInStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isLoggedIn = prefs.getBool("isLoggedIn");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +47,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        "/": (ctx) => ListUserScreen(),
+        "/": (ctx) => (isLoggedIn ? ListUserScreen() : LoginScreen()),
         ListUserScreen.routeName: (ctx) => ListUserScreen(),
         AddUserScreen.routeName: (ctx) => AddUserScreen(),
         UserDetailScreen.routeName: (ctx) => UserDetailScreen(),

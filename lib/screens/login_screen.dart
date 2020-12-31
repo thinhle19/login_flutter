@@ -1,8 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:login/screens/list_user_screen.dart';
-import 'package:login/widgets/my_flat_button.dart';
-
-import '../models/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,6 +18,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
+
+    void setLogInStatus() async {
+      final prefs = await SharedPreferences.getInstance();
+
+      await prefs.setBool("isLoggedIn", loggedIn);
+    }
 
     return Scaffold(
       body: SafeArea(
@@ -70,16 +74,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               print(userNameController.text);
                               print(passwordController.text);
-                              if (userNameController.text == "admin" && passwordController.text == "admin") {
-                                setState(() {
-                                  loggedIn = true;
-                                });
+                              if (userNameController.text == "admin" &&
+                                  passwordController.text == "admin") {
+                                loggedIn = true;
+                                setLogInStatus();
                                 Navigator.pushReplacementNamed(
                                     context, ListUserScreen.routeName);
-                              } else
-                                setState(() {
-                                  loggedIn = false;
-                                });
+                              } else {
+                                loggedIn = false;
+                                setLogInStatus();
+                              }
                             },
                             child: Text(
                               "Login",

@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import "package:flutter/material.dart";
 import 'package:login/models/user_model.dart';
 import 'package:login/screens/add_user_screen.dart';
 import 'package:login/widgets/user_item.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ListUserScreen extends StatefulWidget {
   static const routeName = "/list-user";
@@ -12,14 +15,45 @@ class ListUserScreen extends StatefulWidget {
 }
 
 class _ListUserScreenState extends State<ListUserScreen> {
+  void setLoggedOut() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool("isLoggedIn", false);
+  }
+
   @override
   Widget build(BuildContext context) {
     var userModel = Provider.of<UserModel>(context, listen: true);
 
     return SafeArea(
       child: Scaffold(
+        drawer: Drawer(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: FlatButton(
+                onPressed: () {
+                  setLoggedOut();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.exit_to_app_sharp),
+                    Text("Logout"),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
         appBar: AppBar(
           centerTitle: true,
+          leading: Icon(
+            Icons.menu,
+            color: Colors.black,
+          ),
           title: Text(
             "List User",
             style: TextStyle(
