@@ -6,16 +6,7 @@ class MyFlatButton extends StatelessWidget {
   final Color color;
   final double height;
   final double width;
-  final double circularDegree;
-
-  MyFlatButton({
-    @required this.title,
-    @required this.handler,
-    this.color = Colors.blue,
-    this.height,
-    this.width,
-    this.circularDegree = 15,
-  });
+  final double circularDegree;final double textSize;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +27,7 @@ class MyFlatButton extends StatelessWidget {
         child: FittedBox(
           child: Text(
             title,
-            style: TextStyle(fontSize: 19,fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: textSize,fontWeight: FontWeight.bold),
           ),
         ),
         shape: RoundedRectangleBorder(
@@ -47,4 +38,14 @@ class MyFlatButton extends StatelessWidget {
       ),
     );
   }
+
+  MyFlatButton({
+    @required this.title,
+    @required this.handler,
+    this.color = Colors.blue,
+    this.textSize = 19,
+    this.height,
+    this.width,
+    this.circularDegree = 15,
+  });
 }

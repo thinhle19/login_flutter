@@ -1,14 +1,14 @@
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
-import 'package:login/models/USER_DATA.dart';
+import 'package:login/models/user.dart';
+import 'package:login/models/user_model.dart';
 
 class UserDetailScreen extends StatelessWidget {
   static const routeName = "/user-detail";
 
   @override
   Widget build(BuildContext context) {
-    final userId = ModalRoute.of(context).settings.arguments;
-    final selectedUser = USER_DATA.firstWhere((user) => userId == user.id);
+    final User user = ModalRoute.of(context).settings.arguments;
 
     return SafeArea(
       child: Scaffold(
@@ -18,7 +18,7 @@ class UserDetailScreen extends StatelessWidget {
             Opacity(
               opacity: .9,
               child: Image.asset(
-                selectedUser.fullBodyImageUrl,
+                user.fullBodyImageUrl,
                 fit: BoxFit.fill,
               ),
             ),
@@ -44,7 +44,7 @@ class UserDetailScreen extends StatelessWidget {
                               padding: EdgeInsets.only(top: 40, left: 15),
                               child: FittedBox(
                                 child: Text(
-                                  selectedUser.name,
+                                  user.name,
                                   style: TextStyle(
                                     fontFamily: "Bodini",
                                     fontSize: 30,
@@ -56,7 +56,7 @@ class UserDetailScreen extends StatelessWidget {
                               padding: EdgeInsets.only(top: 0, left: 15),
                               child: FittedBox(
                                 child: Text(
-                                  selectedUser.phone,
+                                  user.phone,
                                   style: TextStyle(
                                     fontFamily: "Bodini",
                                     fontSize: 20,
@@ -68,11 +68,11 @@ class UserDetailScreen extends StatelessWidget {
                               child: Padding(
                                 padding: EdgeInsets.fromLTRB(15, 10, 20, 15),
                                 child: Align(
-                                  alignment: Alignment.topRight,
+                                  alignment: Alignment.topLeft,
                                   child: SingleChildScrollView(
                                     child: RichText(
                                       text: TextSpan(
-                                          text: selectedUser.description,
+                                          text: user.description,
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 20,
@@ -101,7 +101,7 @@ class UserDetailScreen extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.fill,
                             child: Image.asset(
-                              selectedUser.avatarUrl,
+                              user.avatarUrl,
                             ),
                           ),
                         ),

@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:login/models/user_model.dart';
 import 'package:login/screens/add_user_screen.dart';
 import 'package:login/screens/list_user_screen.dart';
-import 'package:login/screens/login_screen.dart';
 import 'package:login/screens/user_detail_screen.dart';
-
-import 'models/user.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserModel(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

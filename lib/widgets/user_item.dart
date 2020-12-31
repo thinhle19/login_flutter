@@ -1,23 +1,17 @@
 import "package:flutter/material.dart";
+import 'package:login/models/user.dart';
 import 'package:login/screens/user_detail_screen.dart';
 
 class UserItem extends StatelessWidget {
-  final String id;
-  final String name;
-  final String phone;
-  final String avatarUrl;
+  final User user;
 
-  UserItem({
-    this.id,
-    this.name,
-    this.phone,
-    this.avatarUrl,
-  });
+
+  UserItem(this.user);
 
   void _selectUser(ctx) {
     Navigator.of(ctx).pushNamed(
       UserDetailScreen.routeName,
-      arguments: id,
+      arguments: user,
     );
   }
 
@@ -46,7 +40,7 @@ class UserItem extends StatelessWidget {
                         clipBehavior: Clip.antiAlias,
                         fit: BoxFit.fill,
                         child: Image.asset(
-                          avatarUrl,
+                          user.avatarUrl,
                         ),
                       ),
                     ),
@@ -57,7 +51,7 @@ class UserItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
                   child: Text(
-                    phone,
+                    user.phone,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: "Bodini",
@@ -69,7 +63,7 @@ class UserItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
                   child: Text(
-                    name,
+                    user.name,
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
