@@ -55,7 +55,7 @@ class _ListClientScreenState extends State<ListClientScreen> {
             color: Colors.black,
           ),
           title: Text(
-            "Current Members",
+            "Current Crews",
             style: TextStyle(
               color: Colors.black,
               fontFamily: "AgencyFB",

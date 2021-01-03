@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
-import 'package:login/screens/user_detail_screen.dart';
+import 'package:login/screens/client_detail_screen.dart';
 
 class ClientItem extends StatelessWidget {
   final Client client;
