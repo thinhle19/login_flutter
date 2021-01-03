@@ -10,7 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (context) => UserModel(),
+      create: (context) => ClientModel(),
       child: MyApp(),
     ),
   );

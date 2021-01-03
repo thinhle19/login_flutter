@@ -22,7 +22,7 @@ class _ListClientScreenState extends State<ListClientScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var userModel = Provider.of<UserModel>(context, listen: true);
+    var clientModel = Provider.of<ClientModel>(context, listen: true);
 
     return SafeArea(
       child: Scaffold(
@@ -68,7 +68,7 @@ class _ListClientScreenState extends State<ListClientScreen> {
         body: GridView.count(
           crossAxisCount: 2,
           padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
-          children: userModel.clients
+          children: clientModel.clients
               .map(
                 (user) => ClientItem(
                   user,

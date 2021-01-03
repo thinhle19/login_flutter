@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:login/models/client.dart';
 
-class UserModel extends ChangeNotifier {
+class ClientModel extends ChangeNotifier {
   List<Client> clients = [
     Client(
       id: "1",
@@ -41,8 +41,8 @@ class UserModel extends ChangeNotifier {
     ),
   ];
 
-  void add(Client user) {
-    clients.add(user);
+  void add(Client client) {
+    clients.add(client);
     notifyListeners();
   }
 }

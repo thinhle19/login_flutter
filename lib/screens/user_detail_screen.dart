@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
 import 'package:login/models/client.dart';
-import 'package:login/models/client_model.dart';
 
 class ClientDetailScreen extends StatelessWidget {
   static const routeName = "/client-detail";

@@ -94,7 +94,7 @@ class _AddClientScreenState extends State<AddClientScreen> {
                   ),
                   color: Colors.cyan,
                   onPressed: () {
-                    Provider.of<UserModel>(context, listen: true).add(
+                    Provider.of<ClientModel>(context, listen: true).add(
                       Client(
                         id: DateTime.now().toString(),
                         fullBodyImageUrl: "assets/full-body.png",
