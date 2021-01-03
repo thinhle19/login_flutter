@@ -1,24 +1,24 @@
 import "package:flutter/material.dart";
-import 'package:login/models/user.dart';
+import 'package:login/models/client.dart';
 import 'package:login/screens/user_detail_screen.dart';
 
-class UserItem extends StatelessWidget {
-  final User user;
+class ClientItem extends StatelessWidget {
+  final Client client;
 
 
-  UserItem(this.user);
+  ClientItem(this.client);
 
-  void _selectUser(ctx) {
+  void _selectClient(ctx) {
     Navigator.of(ctx).pushNamed(
-      UserDetailScreen.routeName,
-      arguments: user,
+      ClientDetailScreen.routeName,
+      arguments: client,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {_selectUser(context);},
+      onTap: () {_selectClient(context);},
       child: Padding(
         padding: EdgeInsets.all(6),
         child: Card(
@@ -40,7 +40,7 @@ class UserItem extends StatelessWidget {
                         clipBehavior: Clip.antiAlias,
                         fit: BoxFit.fill,
                         child: Image.asset(
-                          user.avatarUrl,
+                          client.avatarUrl,
                         ),
                       ),
                     ),
@@ -51,7 +51,7 @@ class UserItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
                   child: Text(
-                    user.phone,
+                    client.phone,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontFamily: "Bodini",
@@ -63,7 +63,7 @@ class UserItem extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
                   child: Text(
-                    user.name,
+                    client.name,
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

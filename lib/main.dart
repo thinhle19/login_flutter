@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login/models/user_model.dart';
-import 'package:login/screens/add_user_screen.dart';
-import 'package:login/screens/list_user_screen.dart';
+import 'package:login/models/client_model.dart';
+import 'package:login/screens/add_client_screen.dart';
+import 'package:login/screens/list_client_screen.dart';
 import 'package:login/screens/login_screen.dart';
 import 'package:login/screens/user_detail_screen.dart';
 import 'package:provider/provider.dart';
@@ -47,10 +47,10 @@ class _MyAppState extends State<MyApp> {
       ),
       initialRoute: "/",
       routes: {
-        "/": (ctx) => (isLoggedIn ? ListUserScreen() : LoginScreen()),
-        ListUserScreen.routeName: (ctx) => ListUserScreen(),
-        AddUserScreen.routeName: (ctx) => AddUserScreen(),
-        UserDetailScreen.routeName: (ctx) => UserDetailScreen(),
+        "/": (ctx) => (isLoggedIn ? ListClientScreen() : LoginScreen()),
+        ListClientScreen.routeName: (ctx) => ListClientScreen(),
+        AddClientScreen.routeName: (ctx) => AddClientScreen(),
+        ClientDetailScreen.routeName: (ctx) => ClientDetailScreen(),
       },
     );
   }

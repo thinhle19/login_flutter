@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:login/models/user.dart';
+import 'package:login/models/client.dart';
 
 class UserModel extends ChangeNotifier {
-  List<User> users = [
-    User(
+  List<Client> clients = [
+    Client(
       id: "1",
       avatarUrl: "assets/avatar.jpg",
       fullBodyImageUrl: "assets/full-body.png",
@@ -15,7 +15,7 @@ class UserModel extends ChangeNotifier {
           "The self-study lessons in this section are written and organised "
           "according one two three four five six seven eight nine tento the levels of the Common European Framework of Reference for languages (CEFR). There are different types of texts and interactive exercises that practise the reading skills you need to do well in your studies, to get ahead at work and to communicate in English in your free time.",
     ),
-    User(
+    Client(
       id: "2",
       avatarUrl: "assets/avatar.jpg",
       fullBodyImageUrl: "assets/full-body.png",
@@ -27,7 +27,7 @@ class UserModel extends ChangeNotifier {
           "The self-study lessons in this section are written and organised "
           "according one two three four five six seven eight nine tento the levels of the Common European Framework of Reference for languages (CEFR). There are different types of texts and interactive exercises that practise the reading skills you need to do well in your studies, to get ahead at work and to communicate in English in your free time.",
     ),
-    User(
+    Client(
       id: "3",
       avatarUrl: "assets/avatar.jpg",
       fullBodyImageUrl: "assets/full-body.png",
@@ -41,8 +41,8 @@ class UserModel extends ChangeNotifier {
     ),
   ];
 
-  void add(User user) {
-    users.add(user);
+  void add(Client user) {
+    clients.add(user);
     notifyListeners();
   }
 }

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:login/screens/list_user_screen.dart';
+import 'package:login/screens/list_client_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 loggedIn = true;
                                 setLogInStatus();
                                 Navigator.pushReplacementNamed(
-                                    context, ListUserScreen.routeName);
+                                    context, ListClientScreen.routeName);
                               } else {
                                 loggedIn = false;
                                 setLogInStatus();

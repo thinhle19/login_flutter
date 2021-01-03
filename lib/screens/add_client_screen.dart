@@ -1,17 +1,17 @@
 import "package:flutter/material.dart";
-import 'package:login/models/user.dart';
-import 'package:login/models/user_model.dart';
+import 'package:login/models/client.dart';
+import 'package:login/models/client_model.dart';
 import 'package:login/widgets/my_text_field_item.dart';
 import 'package:provider/provider.dart';
 
-class AddUserScreen extends StatefulWidget {
-  static const routeName = "/add-user";
+class AddClientScreen extends StatefulWidget {
+  static const routeName = "/add-client";
 
   @override
-  _AddUserScreenState createState() => _AddUserScreenState();
+  _AddClientScreenState createState() => _AddClientScreenState();
 }
 
-class _AddUserScreenState extends State<AddUserScreen> {
+class _AddClientScreenState extends State<AddClientScreen> {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final descriptionController = TextEditingController();
@@ -23,7 +23,7 @@ class _AddUserScreenState extends State<AddUserScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(
-            "Add User",
+            "Add Member",
             style: TextStyle(
               color: Colors.black,
               fontFamily: "AgencyFB",
@@ -94,14 +94,16 @@ class _AddUserScreenState extends State<AddUserScreen> {
                   ),
                   color: Colors.cyan,
                   onPressed: () {
-                    Provider.of<UserModel>(context, listen: true).add(User(
-                      id: DateTime.now().toString(),
-                      fullBodyImageUrl: "assets/full-body.png",
-                      avatarUrl: "assets/avatar.jpg",
-                      description: descriptionController.text,
-                      phone: phoneController.text,
-                      name: nameController.text,
-                    ));
+                    Provider.of<UserModel>(context, listen: true).add(
+                      Client(
+                        id: DateTime.now().toString(),
+                        fullBodyImageUrl: "assets/full-body.png",
+                        avatarUrl: "assets/avatar.jpg",
+                        description: descriptionController.text,
+                        phone: phoneController.text,
+                        name: nameController.text,
+                      ),
+                    );
                     Navigator.of(context).pop();
                   },
                 ),

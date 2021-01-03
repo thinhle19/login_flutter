@@ -1,20 +1,20 @@
 import 'dart:io';
 
 import "package:flutter/material.dart";
-import 'package:login/models/user_model.dart';
-import 'package:login/screens/add_user_screen.dart';
+import 'package:login/models/client_model.dart';
+import 'package:login/screens/add_client_screen.dart';
 import 'package:login/widgets/user_item.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ListUserScreen extends StatefulWidget {
+class ListClientScreen extends StatefulWidget {
   static const routeName = "/list-user";
 
   @override
-  _ListUserScreenState createState() => _ListUserScreenState();
+  _ListClientScreenState createState() => _ListClientScreenState();
 }
 
-class _ListUserScreenState extends State<ListUserScreen> {
+class _ListClientScreenState extends State<ListClientScreen> {
   void setLoggedOut() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isLoggedIn", false);
@@ -55,7 +55,7 @@ class _ListUserScreenState extends State<ListUserScreen> {
             color: Colors.black,
           ),
           title: Text(
-            "List User",
+            "Current Members",
             style: TextStyle(
               color: Colors.black,
               fontFamily: "AgencyFB",
@@ -68,9 +68,9 @@ class _ListUserScreenState extends State<ListUserScreen> {
         body: GridView.count(
           crossAxisCount: 2,
           padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
-          children: userModel.users
+          children: userModel.clients
               .map(
-                (user) => UserItem(
+                (user) => ClientItem(
                   user,
                 ),
               )
@@ -79,7 +79,7 @@ class _ListUserScreenState extends State<ListUserScreen> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return AddUserScreen();
+              return AddClientScreen();
             }));
           },
           backgroundColor: Colors.cyan,

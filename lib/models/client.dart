@@ -1,4 +1,4 @@
-class User {
+class Client {
   final String name;
   final String phone;
   final String avatarUrl;
@@ -8,7 +8,7 @@ class User {
   final String fullBodyImageUrl;
   final String description;
 
-  const User({
+  const Client({
     this.id,
     this.name,
     this.phone,

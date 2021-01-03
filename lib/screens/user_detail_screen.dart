@@ -1,14 +1,14 @@
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
-import 'package:login/models/user.dart';
-import 'package:login/models/user_model.dart';
+import 'package:login/models/client.dart';
+import 'package:login/models/client_model.dart';
 
-class UserDetailScreen extends StatelessWidget {
-  static const routeName = "/user-detail";
+class ClientDetailScreen extends StatelessWidget {
+  static const routeName = "/client-detail";
 
   @override
   Widget build(BuildContext context) {
-    final User user = ModalRoute.of(context).settings.arguments;
+    final Client client = ModalRoute.of(context).settings.arguments;
 
     return SafeArea(
       child: Scaffold(
@@ -18,7 +18,7 @@ class UserDetailScreen extends StatelessWidget {
             Opacity(
               opacity: .9,
               child: Image.asset(
-                user.fullBodyImageUrl,
+                client.fullBodyImageUrl,
                 fit: BoxFit.fill,
               ),
             ),
@@ -44,7 +44,7 @@ class UserDetailScreen extends StatelessWidget {
                               padding: EdgeInsets.only(top: 40, left: 15),
                               child: FittedBox(
                                 child: Text(
-                                  user.name,
+                                  client.name,
                                   style: TextStyle(
                                     fontFamily: "Bodini",
                                     fontSize: 30,
@@ -56,7 +56,7 @@ class UserDetailScreen extends StatelessWidget {
                               padding: EdgeInsets.only(top: 0, left: 15),
                               child: FittedBox(
                                 child: Text(
-                                  user.phone,
+                                  client.phone,
                                   style: TextStyle(
                                     fontFamily: "Bodini",
                                     fontSize: 20,
@@ -72,7 +72,7 @@ class UserDetailScreen extends StatelessWidget {
                                   child: SingleChildScrollView(
                                     child: RichText(
                                       text: TextSpan(
-                                          text: user.description,
+                                          text: client.description,
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 20,
@@ -101,7 +101,7 @@ class UserDetailScreen extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.fill,
                             child: Image.asset(
-                              user.avatarUrl,
+                              client.avatarUrl,
                             ),
                           ),
                         ),
