@@ -45,4 +45,18 @@ class ClientModel extends ChangeNotifier {
     clients.add(client);
     notifyListeners();
   }
+
+  void updateInfo(
+      Client client, String name, String phone, String description) {
+    client = Client(
+      name: name,
+      phone: phone,
+      description: description,
+      id: client.id,
+      password: "@123",
+      userName: "@123",
+      avatarUrl: "assets/avatar.jpg",
+      fullBodyImageUrl: "assets/full-body.png",
+    );
+  }
 }

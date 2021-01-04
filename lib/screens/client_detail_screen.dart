@@ -1,12 +1,16 @@
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
 import 'package:login/models/client.dart';
+import 'package:login/models/client_model.dart';
+import 'package:login/screens/edit_client_screen.dart';
+import 'package:provider/provider.dart';
 
 class ClientDetailScreen extends StatelessWidget {
   static const routeName = "/client-detail";
 
   @override
   Widget build(BuildContext context) {
+    var clientModel = Provider.of<ClientModel>(context, listen: true);
     final Client client = ModalRoute.of(context).settings.arguments;
 
     return SafeArea(
@@ -65,7 +69,11 @@ class ClientDetailScreen extends StatelessWidget {
                                             const EdgeInsets.only(right: 15),
                                         child: FlatButton(
                                           color: Colors.cyan.shade200,
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.of(context).pushNamed(
+                                                EditClientScreen.routeName,
+                                                arguments: client);
+                                          },
                                           child: Icon(Icons.edit_sharp),
                                         ),
                                       ),

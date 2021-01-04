@@ -1,14 +1,12 @@
-import 'dart:io';
-
 import "package:flutter/material.dart";
 import 'package:login/models/client_model.dart';
 import 'package:login/screens/add_client_screen.dart';
-import 'package:login/widgets/user_item.dart';
+import 'package:login/widgets/client_item.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ListClientScreen extends StatefulWidget {
-  static const routeName = "/list-user";
+  static const routeName = "/list-client";
 
   @override
   _ListClientScreenState createState() => _ListClientScreenState();
@@ -70,9 +68,7 @@ class _ListClientScreenState extends State<ListClientScreen> {
           padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
           children: clientModel.clients
               .map(
-                (user) => ClientItem(
-                  user,
-                ),
+                (client) => ClientItem(client),
               )
               .toList(),
         ),
