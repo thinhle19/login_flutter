@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:login/models/local_storage.dart';
 import 'package:login/screens/list_client_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,7 +11,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   String userName;
   String password;
-  bool loggedIn = false;
+  Future<bool> isLoggedInBefore = LocalStorage().checkState();
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -19,93 +19,105 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
 
-    void setLogInStatus() async {
-      final prefs = await SharedPreferences.getInstance();
-
-      await prefs.setBool("isLoggedIn", loggedIn);
-    }
-
-    return Scaffold(
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: screenHeight * 0.04,
-                  ),
-                  Text(
-                    "Welcome",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "Input your username and password",
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    height: screenHeight * 0.08,
-                  ),
-                  Form(
-                    key: _formKey,
+    return FutureBuilder<bool>(
+      future: isLoggedInBefore,
+      builder: (context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.data == false) {
+          return Scaffold(
+            body: Builder(builder: (BuildContext context) {
+              return SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        buildUsernameFormField(),
                         SizedBox(
-                          height: 30,
+                          height: screenHeight * 0.04,
                         ),
-                        buildPasswordFormField(),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 56,
-                          child: FlatButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            color: Colors.green,
-                            onPressed: () {
-                              print(userNameController.text);
-                              print(passwordController.text);
-                              if (userNameController.text == "admin" &&
-                                  passwordController.text == "admin") {
-                                loggedIn = true;
-                                setLogInStatus();
-                                Navigator.pushReplacementNamed(
-                                    context, ListClientScreen.routeName);
-                              } else {
-                                loggedIn = false;
-                                setLogInStatus();
-                              }
-                            },
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                              ),
-                            ),
+                        Text(
+                          "Welcome",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
                           ),
-                        )
+                        ),
+                        Text(
+                          "Input your username and password",
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(
+                          height: screenHeight * 0.08,
+                        ),
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              buildUsernameFormField(),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              buildPasswordFormField(),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                height: 56,
+                                child: FlatButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  color: Colors.green,
+                                  onPressed: () {
+                                    print(userNameController.text);
+                                    print(passwordController.text);
+                                    if (userNameController.text == "admin" &&
+                                        passwordController.text == "admin") {
+                                      LocalStorage().login();
+                                      Navigator.pushReplacementNamed(
+                                          context, ListClientScreen.routeName);
+                                    } else {
+                                      Scaffold.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(
+                                            'Account does not exist, try again!'),
+                                        backgroundColor: Colors.red,
+                                      ));
+                                    }
+                                  },
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: screenHeight * 0.08,
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: screenHeight * 0.08,
-                  ),
-                ],
-              ),
+                ),
+              );
+            }),
+          );
+        } else if (snapshot.data == true) {
+          return ListClientScreen();
+        } else {
+          return Scaffold(
+            body: Center(
+              child: Text("WAITING..."),
             ),
-          ),
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 

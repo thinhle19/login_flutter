@@ -7,6 +7,11 @@ import 'package:provider/provider.dart';
 class AddClientScreen extends StatefulWidget {
   static const routeName = "/add-client";
 
+  final ClientModel clientModel;
+
+
+  AddClientScreen(this.clientModel);
+
   @override
   _AddClientScreenState createState() => _AddClientScreenState();
 }
@@ -94,7 +99,7 @@ class _AddClientScreenState extends State<AddClientScreen> {
                   ),
                   color: Colors.cyan,
                   onPressed: () {
-                    Provider.of<ClientModel>(context, listen: true).add(
+                    widget.clientModel.add(
                       Client(
                         id: DateTime.now().toString(),
                         fullBodyImageUrl: "assets/full-body.png",

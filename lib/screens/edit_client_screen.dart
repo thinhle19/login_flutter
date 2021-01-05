@@ -2,17 +2,25 @@ import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
 import 'package:login/models/client_model.dart';
 import 'package:login/widgets/my_text_field_item.dart';
-import 'package:provider/provider.dart';
 
-class EditClientScreen extends StatelessWidget {
+class EditClientScreen extends StatefulWidget {
   static const routeName = "/edit-client";
 
+  Client client;
+  final ClientModel clientModel;
+
+  EditClientScreen(this.client, this.clientModel);
+
+  @override
+  _EditClientScreenState createState() => _EditClientScreenState();
+}
+
+class _EditClientScreenState extends State<EditClientScreen> {
   @override
   Widget build(BuildContext context) {
-    final Client client = ModalRoute.of(context).settings.arguments;
-    final oldName = client.name;
-    final oldPhone = client.phone;
-    final oldDescription = client.description;
+    final oldName = widget.client.name;
+    final oldPhone = widget.client.phone;
+    final oldDescription = widget.client.description;
     final nameController = TextEditingController()..text = oldName;
     final phoneController = TextEditingController()..text = oldPhone;
     final descriptionController = TextEditingController()
@@ -94,12 +102,20 @@ class EditClientScreen extends StatelessWidget {
                   ),
                   color: Colors.cyan,
                   onPressed: () {
-                    Provider.of<ClientModel>(context, listen: true).updateInfo(
-                      client,
-                      nameController.text,
-                      phoneController.text,
-                      descriptionController.text,
+                    print(nameController.text);
+                    widget.clientModel.updateInfo(
+                      widget.client,
+                      Client(
+                        description: descriptionController.text,
+                        phone: phoneController.text,
+                        name: nameController.text,
+                        id: widget.client.id,
+                        avatarUrl: widget.client.avatarUrl,
+                        fullBodyImageUrl: widget.client.fullBodyImageUrl,
+                      ),
                     );
+                    print("in edit client: ${widget.clientModel.clients[2]
+                        .name}");
                     Navigator.of(context).pop();
                   },
                 ),

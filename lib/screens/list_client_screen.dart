@@ -63,20 +63,26 @@ class _ListClientScreenState extends State<ListClientScreen> {
           ),
           backgroundColor: Colors.white,
         ),
-        body: GridView.count(
-          crossAxisCount: 2,
-          padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
-          children: clientModel.clients
-              .map(
-                (client) => ClientItem(client),
-              )
-              .toList(),
+        body: Consumer<ClientModel>(
+          builder: (context, cart, child) {
+            return GridView.count(
+              crossAxisCount: 2,
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
+              children: clientModel.clients
+                  .map(
+                    (client) => ClientItem(client, clientModel),
+                  )
+                  .toList(),
+            );
+          },
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return AddClientScreen();
-            }));
+              return AddClientScreen(clientModel);
+            })).then((value) => {
+                  setState(() => {}),
+                });
           },
           backgroundColor: Colors.cyan,
           child: Icon(
