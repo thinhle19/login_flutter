@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
 import 'package:login/models/client.dart';
@@ -20,6 +21,8 @@ class ClientDetailScreen extends StatefulWidget {
 class _ClientDetailScreenState extends State<ClientDetailScreen> {
   @override
   Widget build(BuildContext context) {
+    firebase_storage.Reference ref = firebase_storage.FirebaseStorage
+        .instance.ref("/client.txt");
     return SafeArea(
       child: Scaffold(
         body: Consumer<ClientModel>(
@@ -84,7 +87,8 @@ class _ClientDetailScreenState extends State<ClientDetailScreen> {
                                                       builder: (ctx) =>
                                                           EditClientScreen(
                                                               widget.client,
-                                                              widget.clientModel)),
+                                                              widget
+                                                                  .clientModel)),
                                                 );
                                               },
                                               child: Icon(Icons.edit_sharp),

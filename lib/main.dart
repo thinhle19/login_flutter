@@ -1,17 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:login/file_handling.dart';
 import 'package:login/models/client_model.dart';
-import 'package:login/screens/add_client_screen.dart';
-import 'package:login/screens/client_detail_screen.dart';
-import 'package:login/screens/edit_client_screen.dart';
 import 'package:login/screens/list_client_screen.dart';
 import 'package:login/screens/login_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
   final clientModel = ClientModel();
   FileHandling.writeData(clientModel.clients);
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     ChangeNotifierProvider(
       create: (context) => ClientModel(),
