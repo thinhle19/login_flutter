@@ -1,10 +1,8 @@
 class Client {
+  final String id;
   final String name;
   final String phone;
   final String avatarUrl;
-  final String userName;
-  final String password;
-  final String id;
   final String fullBodyImageUrl;
   final String description;
 
@@ -13,9 +11,18 @@ class Client {
     this.name,
     this.phone,
     this.avatarUrl,
-    this.userName,
-    this.password,
     this.description,
     this.fullBodyImageUrl,
   });
+
+  Map<String, dynamic> toMap() {
+    return{
+      "id":id,
+      "name": name,
+      "phone": phone,
+      "avatarUrl": avatarUrl,
+      "fullBodyImageUrl": fullBodyImageUrl,
+      "description": description,
+    };
+  }
 }

@@ -1,15 +1,13 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
-import 'package:login/models/client_model.dart';
 import 'package:login/widgets/my_text_field_item.dart';
 
 class EditClientScreen extends StatefulWidget {
   static const routeName = "/edit-client";
 
   Client client;
-  final ClientModel clientModel;
 
-  EditClientScreen(this.client, this.clientModel);
+  EditClientScreen(this.client);
 
   @override
   _EditClientScreenState createState() => _EditClientScreenState();
@@ -103,19 +101,6 @@ class _EditClientScreenState extends State<EditClientScreen> {
                   color: Colors.cyan,
                   onPressed: () {
                     print(nameController.text);
-                    widget.clientModel.updateInfo(
-                      widget.client,
-                      Client(
-                        description: descriptionController.text,
-                        phone: phoneController.text,
-                        name: nameController.text,
-                        id: widget.client.id,
-                        avatarUrl: widget.client.avatarUrl,
-                        fullBodyImageUrl: widget.client.fullBodyImageUrl,
-                      ),
-                    );
-                    print("in edit client: ${widget.clientModel.clients[2]
-                        .name}");
                     Navigator.of(context).pop();
                   },
                 ),

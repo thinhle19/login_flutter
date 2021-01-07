@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:login/models/client_model.dart';
 import 'package:login/screens/add_client_screen.dart';
 import 'package:login/widgets/client_item.dart';
 import 'package:provider/provider.dart';
@@ -20,8 +19,6 @@ class _ListClientScreenState extends State<ListClientScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var clientModel = Provider.of<ClientModel>(context, listen: true);
-
     return SafeArea(
       child: Scaffold(
         drawer: Drawer(
@@ -63,26 +60,16 @@ class _ListClientScreenState extends State<ListClientScreen> {
           ),
           backgroundColor: Colors.white,
         ),
-        body: Consumer<ClientModel>(
-          builder: (context, cart, child) {
-            return GridView.count(
-              crossAxisCount: 2,
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
-              children: clientModel.clients
-                  .map(
-                    (client) => ClientItem(client, clientModel),
-                  )
-                  .toList(),
-            );
-          },
-        ),
+        body: GridView.count(
+            crossAxisCount: 2,
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
+            children: [
+              Center(
+                child: Text("This is List"),
+              ),
+            ]),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return AddClientScreen(clientModel);
-            })).then((value) => {
-                  setState(() => {}),
-                });
           },
           backgroundColor: Colors.cyan,
           child: Icon(

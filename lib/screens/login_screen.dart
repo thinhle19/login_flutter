@@ -74,7 +74,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     print(passwordController.text);
                                     if (userNameController.text == "admin" &&
                                         passwordController.text == "admin") {
-                                      LocalStorage().login();
                                       Navigator.pushReplacementNamed(
                                           context, ListClientScreen.routeName);
                                     } else {

@@ -1,17 +1,9 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
-import 'package:login/models/client_model.dart';
 import 'package:login/widgets/my_text_field_item.dart';
-import 'package:provider/provider.dart';
 
 class AddClientScreen extends StatefulWidget {
   static const routeName = "/add-client";
-
-  final ClientModel clientModel;
-
-
-  AddClientScreen(this.clientModel);
-
   @override
   _AddClientScreenState createState() => _AddClientScreenState();
 }
@@ -99,17 +91,6 @@ class _AddClientScreenState extends State<AddClientScreen> {
                   ),
                   color: Colors.cyan,
                   onPressed: () {
-                    widget.clientModel.add(
-                      Client(
-                        id: DateTime.now().toString(),
-                        fullBodyImageUrl: "assets/full-body.png",
-                        avatarUrl: "assets/avatar.jpg",
-                        description: descriptionController.text,
-                        phone: phoneController.text,
-                        name: nameController.text,
-                      ),
-                    );
-                    Navigator.of(context).pop();
                   },
                 ),
               ),

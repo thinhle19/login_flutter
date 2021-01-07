@@ -1,18 +1,16 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
-import 'package:login/models/client_model.dart';
 import 'package:login/screens/client_detail_screen.dart';
 
 class ClientItem extends StatelessWidget {
   final Client client;
-  final ClientModel clientModel;
 
-  ClientItem(this.client, this.clientModel);
+  ClientItem(this.client);
 
   void _selectClient(ctx, Client client) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
-          builder: (BuildContext ctx) => ClientDetailScreen(client, clientModel)),
+          builder: (BuildContext ctx) => ClientDetailScreen(client)),
     );
   }
 
