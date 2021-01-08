@@ -3,9 +3,9 @@ import 'package:login/models/client.dart';
 import 'package:login/screens/client_detail_screen.dart';
 
 class ClientItem extends StatelessWidget {
-  final Client client;
-
   ClientItem(this.client);
+
+  final Client client;
 
   void _selectClient(ctx, Client client) {
     Navigator.of(ctx).push(

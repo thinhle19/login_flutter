@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
-import 'package:login/screens/add_client_screen.dart';
+import 'package:login/models/client.dart';
+import 'package:login/models/database_transaction.dart';
 import 'package:login/widgets/client_item.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ListClientScreen extends StatefulWidget {
@@ -19,6 +19,14 @@ class _ListClientScreenState extends State<ListClientScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future<List<Client>> loadClients() async {
+     return DatabaseTransaction.getClients();
+    }
+
+    // loadClients();
+    // print("a");
+    // print(clients);
+
     return SafeArea(
       child: Scaffold(
         drawer: Drawer(
@@ -60,17 +68,31 @@ class _ListClientScreenState extends State<ListClientScreen> {
           ),
           backgroundColor: Colors.white,
         ),
-        body: GridView.count(
-            crossAxisCount: 2,
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
-            children: [
-              Center(
-                child: Text("This is List"),
-              ),
-            ]),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
+        body: FutureBuilder<List<Client>>(
+          future: loadClients(),
+          builder: (BuildContext ctx, AsyncSnapshot<List<Client>> snapshot) {
+            // if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData) {
+              return GridView.count(
+                crossAxisCount: 2,
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
+                children:
+                    snapshot.data.map((client) => ClientItem(client)).toList(),
+              );
+            } else
+              return Center(
+                child: Text("LOADING..."),
+              );
           },
+        ),
+        /*  GridView.count(
+          crossAxisCount: 2,
+          padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
+          children: [Text("hihi")],
+          // clients.map((client) => ClientItem(client)).toList(),
+        ),*/
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
           backgroundColor: Colors.cyan,
           child: Icon(
             Icons.add,

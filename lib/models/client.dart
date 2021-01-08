@@ -11,8 +11,8 @@ class Client {
     this.name,
     this.phone,
     this.avatarUrl,
-    this.description,
     this.fullBodyImageUrl,
+    this.description,
   });
 
   Map<String, dynamic> toMap() {

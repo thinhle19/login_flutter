@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:login/models/database_transaction.dart';
 import 'package:login/models/local_storage.dart';
 import 'package:login/screens/list_client_screen.dart';
 
@@ -18,7 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-
     return FutureBuilder<bool>(
       future: isLoggedInBefore,
       builder: (context, AsyncSnapshot<bool> snapshot) {
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
         } else {
           return Scaffold(
             body: Center(
-              child: Text("WAITING..."),
+              child: Text("LOGGING IN..."),
             ),
           );
         }
