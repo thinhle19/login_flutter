@@ -1,11 +1,13 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
+import 'package:login/models/database_transaction.dart';
+import 'package:login/screens/client_detail_screen.dart';
 import 'package:login/widgets/my_text_field_item.dart';
 
 class EditClientScreen extends StatefulWidget {
   static const routeName = "/edit-client";
 
-  Client client;
+  final Client client;
 
   EditClientScreen(this.client);
 
@@ -101,7 +103,21 @@ class _EditClientScreenState extends State<EditClientScreen> {
                   color: Colors.cyan,
                   onPressed: () {
                     print(nameController.text);
+                    var newCmnClient = Client(
+                      id: widget.client.id,
+                      phone: phoneController.text,
+                      name: nameController.text,
+                      description: descriptionController.text,
+                      fullBodyImageUrl: widget.client.fullBodyImageUrl,
+                      avatarUrl: widget.client.avatarUrl,
+                    );
+                    DatabaseTransaction.updateClient(newCmnClient);
                     Navigator.of(context).pop();
+                    // Navigator.of(context).pushReplacement(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ClientDetailScreen(newCmnClient),
+                    //   ),
+                    // );
                   },
                 ),
               ),

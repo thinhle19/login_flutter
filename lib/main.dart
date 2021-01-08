@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login/models/database_transaction.dart';
 import 'package:login/screens/add_client_screen.dart';
+import 'package:login/screens/client_detail_screen.dart';
+import 'package:login/screens/edit_client_screen.dart';
 import 'package:login/screens/list_client_screen.dart';
 import 'package:login/screens/login_screen.dart';
 import 'package:path/path.dart';
@@ -79,6 +82,7 @@ void main() async {
   //
   // var results = await getClients();
   // print(results.elementAt(0).description);
+  // DatabaseTransaction.deleteOldDatabase();
   runApp(
     MyApp(),
   );

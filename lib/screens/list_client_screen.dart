@@ -78,6 +78,7 @@ class _ListClientScreenState extends State<ListClientScreen> {
                 crossAxisCount: 2,
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 50),
                 children:
+                    //snapshot here is List<Client>
                     snapshot.data.map((client) => ClientItem(client)).toList(),
               );
             } else
