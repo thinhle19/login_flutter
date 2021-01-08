@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
 import 'package:login/models/database_transaction.dart';
+import 'package:login/screens/add_client_screen.dart';
 import 'package:login/widgets/client_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -92,7 +93,9 @@ class _ListClientScreenState extends State<ListClientScreen> {
           // clients.map((client) => ClientItem(client)).toList(),
         ),*/
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, AddClientScreen.routeName);
+          },
           backgroundColor: Colors.cyan,
           child: Icon(
             Icons.add,

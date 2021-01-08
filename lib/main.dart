@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/screens/add_client_screen.dart';
 import 'package:login/screens/list_client_screen.dart';
 import 'package:login/screens/login_screen.dart';
 import 'package:path/path.dart';
@@ -100,7 +101,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         "/": (ctx) => LoginScreen(),
         ListClientScreen.routeName: (ctx) => ListClientScreen(),
-        // AddClientScreen.routeName: (ctx) => AddClientScreen(),
+        AddClientScreen.routeName: (ctx) => AddClientScreen(),
         // ClientDetailScreen.routeName: (ctx) => ClientDetailScreen(),
         // EditClientScreen.routeName: (ctx) => EditClientScreen(),
       },

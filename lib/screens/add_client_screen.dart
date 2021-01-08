@@ -1,9 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
+import 'package:login/models/database_transaction.dart';
 import 'package:login/widgets/my_text_field_item.dart';
+import 'package:sqflite/sqflite.dart';
 
 class AddClientScreen extends StatefulWidget {
   static const routeName = "/add-client";
+
   @override
   _AddClientScreenState createState() => _AddClientScreenState();
 }
@@ -90,7 +93,20 @@ class _AddClientScreenState extends State<AddClientScreen> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   color: Colors.cyan,
-                  onPressed: () {
+                  onPressed: () async {
+                    final Database db = await DatabaseTransaction.database;
+                    await db.insert(
+                      "clients",
+                      Client(
+                        id: DateTime.now().toString(),
+                        name: nameController.text,
+                        phone: phoneController.text,
+                        description: descriptionController.text,
+                        fullBodyImageUrl: "assets/full-body.png",
+                        avatarUrl: "assets/avatar.jpg",
+                      ).toMap(),
+                    );
+                    Navigator.of(context).pop();
                   },
                 ),
               ),

@@ -102,7 +102,8 @@ class DatabaseTransaction {
 
     print(maps.length);
 
-    await db.close();
+    //todo find the place for this statement
+    // await db.close();
     return List.generate(maps.length, (i) {
       return Client(
         id: maps[i]["id"],
