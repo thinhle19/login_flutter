@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
-import 'package:login/models/database_transaction.dart';
+import 'package:login/utils/database_transaction.dart';
 import 'package:login/screens/client_detail_screen.dart';
 import 'package:login/widgets/my_text_field_item.dart';
 

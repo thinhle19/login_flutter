@@ -1,8 +1,10 @@
 import "package:flutter/material.dart";
 import 'package:flutter/rendering.dart';
 import 'package:login/models/client.dart';
-import 'package:login/models/database_transaction.dart';
 import 'package:login/screens/edit_client_screen.dart';
+import 'package:login/storage/fire_storage_service.dart';
+import 'package:login/utils/database_transaction.dart';
+import 'package:login/utils/image_picker.dart';
 
 class ClientDetailScreen extends StatefulWidget {
   static const routeName = "/client-detail";
@@ -92,15 +94,16 @@ class _ClientDetailScreenState extends State<ClientDetailScreen> {
                                               child: Icon(Icons.edit_sharp),
                                               color: Colors.cyan.shade200,
                                               onPressed: () {
-                                                Navigator.of(context).push(
+                                                Navigator.of(context)
+                                                    .push(
                                                   MaterialPageRoute(
                                                     builder: (context) =>
                                                         EditClientScreen(
                                                             snapshot.data),
                                                   ),
-                                                ).then((value) {
-                                                  setState(() {
-                                                  });
+                                                )
+                                                    .then((value) {
+                                                  setState(() {});
                                                 });
                                               },
                                             ),
@@ -149,22 +152,69 @@ class _ClientDetailScreenState extends State<ClientDetailScreen> {
                         ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
-                          child: Container(
-                            height: 70,
-                            width: 70,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: AspectRatio(
-                                aspectRatio: 1,
-                                child: FittedBox(
-                                  fit: BoxFit.fill,
-                                  child: Image.asset(
-                                    snapshot.data.avatarUrl,
+                          child: FutureBuilder(
+                            future: _getImage(context, snapshot.data.avatarUrl),
+                            builder: (
+                              context,
+                              imageSnapshot,
+                            ) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done)
+                                return InkWell(
+                                  onTap: () => Navigator.of(context)
+                                      .pushNamed(ImageCapture.routeName),
+                                  child: Container(
+                                    height: 70,
+                                    width: 70,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: AspectRatio(
+                                        aspectRatio: 1,
+                                        child: imageSnapshot.data,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting)
+                                return InkWell(
+                                  onTap: () => Navigator.of(context)
+                                      .pushNamed(ImageCapture.routeName),
+                                  child: Container(
+                                    height: 70,
+                                    width: 70,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: AspectRatio(
+                                        aspectRatio: 1,
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              return Text("error");
+                            },
+                          ),
+                          /* InkWell(
+                            onTap:() => Navigator.of(context).pushNamed
+                              (ImageCapture.routeName),
+                            child: Container(
+                              height: 70,
+                              width: 70,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: FittedBox(
+                                    fit: BoxFit.fill,
+                                    child: Image.asset(
+                                      snapshot.data.avatarUrl,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
+                          ),*/
                         ),
                       ],
                     ),
@@ -177,7 +227,21 @@ class _ClientDetailScreenState extends State<ClientDetailScreen> {
     );
   }
 
-  //todo old thing not using FutureBuilder, for later if there's fucking bug
+  Future<Image> _getImage(BuildContext context, String image) async {
+    Image m;
+    print(image);
+    await FireStorageService.loadFromStorage(context, image).then(
+      (downloadUrl) {
+        m = Image.network(
+          image,
+          fit: BoxFit.fill,
+        );
+      },
+    );
+    return m;
+  }
+
+//todo old thing not using FutureBuilder, for later if there's fucking bug
 /*@override
   Widget build(BuildContext context) {
     return SafeArea(

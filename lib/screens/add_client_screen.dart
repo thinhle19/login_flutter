@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:login/models/client.dart';
-import 'package:login/models/database_transaction.dart';
+import 'file:///D:/Programming/%23Flutter/login/lib/utils/database_transaction.dart';
 import 'package:login/widgets/my_text_field_item.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -102,8 +102,8 @@ class _AddClientScreenState extends State<AddClientScreen> {
                         name: nameController.text,
                         phone: phoneController.text,
                         description: descriptionController.text,
-                        fullBodyImageUrl: "assets/full-body.png",
-                        avatarUrl: "assets/avatar.jpg",
+                        fullBodyImageUrl: "images/full-body.png",
+                        avatarUrl: "images/avatar.jpg",
                       ).toMap(),
                     );
                     Navigator.of(context).pop();
