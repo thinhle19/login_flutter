@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "397953187242",
-    "project_id": "login-be15e",
-    "storage_bucket": "login-be15e.appspot.com"
+    "project_number": "2901305612",
+    "project_id": "login-1cc86",
+    "storage_bucket": "login-1cc86.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:397953187242:android:76dcb7325f3a00cf223fd3",
+        "mobilesdk_app_id": "1:2901305612:android:24d340817ef83c891f4129",
         "android_client_info": {
           "package_name": "com.example.login"
         }
       },
       "oauth_client": [
         {
-          "client_id": "397953187242-dqi9k2rec29kpason44uhhrbak0lh8nb.apps.googleusercontent.com",
+          "client_id": "2901305612-4gn1299l8h1t39vqck4ga1jidhpgt0sj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDBdrlsTzpNHVIrhONwPnKwrQ-q-v8b9vk"
+          "current_key": "AIzaSyAKqqaQDbTr1Gsdoz1OcRoME_uIP7jVsIo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "397953187242-dqi9k2rec29kpason44uhhrbak0lh8nb.apps.googleusercontent.com",
+              "client_id": "2901305612-4gn1299l8h1t39vqck4ga1jidhpgt0sj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
